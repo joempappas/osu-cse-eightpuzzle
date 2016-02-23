@@ -24,8 +24,12 @@ classdef Eight < handle
             parent.explored = true;
         end
         
-        function hasbeenexplored(obj)
-            
+        function y = hasbeenexplored(obj)
+            if obj.explored = true
+                y = true
+            else
+                y = false
+            end
         end
         
         function u = canmoveup(obj)
