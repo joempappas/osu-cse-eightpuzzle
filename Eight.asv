@@ -20,11 +20,11 @@ classdef Eight < handle
         function visitnode(newNode, parent, move)
             newNode.parent = parent;
             newNode.lastMove = move;
-            newNode.pathcost = parent.pathcost + 1;
+            parent.explored = true;
         end
         
         function u = canmoveup(obj)
-            [row, ~] = find(obj.layout ==0);
+            [row, col] = find(obj.layout ==0);
             if (row==2||row==3)
                 u = true;
             else
@@ -33,7 +33,7 @@ classdef Eight < handle
         end
         
         function d = canmovedown(obj)
-            [row, ~] = find(obj.layout ==0);
+            [row, col] = find(obj.layout ==0);
             if (row==1||row==2)
                 d = true;
             else
@@ -42,7 +42,7 @@ classdef Eight < handle
         end
         
         function r = canmoveright(obj)
-            [~, col] = find(obj.layout ==0);
+            [row, col] = find(obj.layout ==0);
             if (col==1||col==2)
                 r = true;
             else
@@ -51,7 +51,7 @@ classdef Eight < handle
          end
         
          function l = canmoveleft(obj)
-            [~, col] = find(obj.layout ==0);
+            [row, col] = find(obj.layout ==0);
             if (col==2||col==3)
                 l = true;
             else
@@ -64,6 +64,7 @@ classdef Eight < handle
                 [row, col] = find(obj.layout == 0);
                 numToSwitch = obj.layout(row,col-1);
                 obj2 = Eight;
+                
                 obj2.layout = obj.layout;
                 obj2.layout(row,col) = numToSwitch;
                 obj2.layout(row, col-1) = 0;
@@ -104,6 +105,11 @@ classdef Eight < handle
                 obj2.layout(row+1, col) = 0;
                 visitnode(obj2, obj, 'down');
              end
+         end
+         
+         function delete(obj)
+             clc
+             clear
          end
          
          function x = isGoalState(obj)
