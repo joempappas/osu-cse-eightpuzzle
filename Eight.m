@@ -23,7 +23,7 @@ classdef Eight < handle
         function visitnode(newNode, parent, move)
             newNode.parent = parent;
             newNode.lastMove = move;
-            newNode.pathCost = parent.pathCost + 1;
+            newNode.pathcost = parent.pathcost + 1;
         end
         
         function u = canmoveup(obj)
