@@ -12,20 +12,20 @@ classdef Eight < handle
     end
     
     methods
-        function obj = Eight(layout)
-            obj.layout = layout;
+        function obj = Eight()
+            %obj.layout = layout;
             obj.pathCost = 0;
         end
         
         function visitnode(newNode, parent, move)
             newNode.parent = parent;
             newNode.lastMove = move;
-            newNode.pathcost = parent.pathcost + 1;
+            newNode.pathCost = parent.pathCost + 1;
         end
         
         function u = canmoveup(obj)
             [row, ~] = find(obj.layout ==0);
-            if (row==2||row==3)
+            if (isequal(row,2)||isequal(row,3))
                 u = true;
             else
                 u = false;
@@ -34,7 +34,7 @@ classdef Eight < handle
         
         function d = canmovedown(obj)
             [row, ~] = find(obj.layout ==0);
-            if (row==1||row==2)
+            if (isequal(row,1)||isequal(row,2))
                 d = true;
             else
                 d = false;
@@ -43,7 +43,7 @@ classdef Eight < handle
         
         function r = canmoveright(obj)
             [~, col] = find(obj.layout ==0);
-            if (col==1||col==2)
+            if (isequal(col,1)||isequal(col,2))
                 r = true;
             else
                 r = false;
@@ -52,7 +52,7 @@ classdef Eight < handle
         
          function l = canmoveleft(obj)
             [~, col] = find(obj.layout ==0);
-            if (col==2||col==3)
+            if (isequal(col,2)||isequal(col,3))
                 l = true;
             else
                 l = false;
