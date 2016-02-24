@@ -4,7 +4,7 @@ classdef Eight < handle
     
     properties
         layout
-        pathCost
+        pathcost
     end
     properties (SetAccess = private)
         parent = Eight.empty;
@@ -12,9 +12,12 @@ classdef Eight < handle
     end
     
     methods
-        function obj = Eight()
-            %obj.layout = layout;
-            obj.pathCost = 0;
+
+        function obj = Eight(layout)
+            obj.layout = layout;
+            obj.pathcost = 0;
+            obj.parent;
+            obj.lastMove;
         end
         
         function visitnode(newNode, parent, move)
@@ -63,8 +66,7 @@ classdef Eight < handle
              if canmoveleft(obj)
                 [row, col] = find(obj.layout == 0);
                 numToSwitch = obj.layout(row,col-1);
-                obj2 = Eight;
-                obj2.layout = obj.layout;
+                obj2 = Eight(obj.layout);
                 obj2.layout(row,col) = numToSwitch;
                 obj2.layout(row, col-1) = 0;
                 visitnode(obj2, obj, 'left');
@@ -75,8 +77,7 @@ classdef Eight < handle
              if canmoveright(obj)
                 [row, col] = find(obj.layout == 0);
                 numToSwitch = obj.layout(row,col+1);
-                obj2 = Eight;
-                obj2.layout = obj.layout;
+                obj2 = Eight(obj.layout);
                 obj2.layout(row,col) = numToSwitch;
                 obj2.layout(row, col+1) = 0;
                 visitnode(obj2, obj, 'right');
@@ -86,8 +87,7 @@ classdef Eight < handle
              if canmoveup(obj)
                 [row, col] = find(obj.layout == 0);
                 numToSwitch = obj.layout(row-1,col);
-                obj2 = Eight;
-                obj2.layout = obj.layout;
+                obj2 = Eight(obj.layout);
                 obj2.layout(row,col) = numToSwitch;
                 obj2.layout(row-1, col) = 0;
                 visitnode(obj2, obj, 'up');
@@ -98,8 +98,7 @@ classdef Eight < handle
              if canmovedown(obj)
                 [row, col] = find(obj.layout == 0);
                 numToSwitch = obj.layout(row+1,col);
-                obj2 = Eight;
-                obj2.layout = obj.layout;
+                obj2 = Eight(obj.layout);
                 obj2.layout(row,col) = numToSwitch;
                 obj2.layout(row+1, col) = 0;
                 visitnode(obj2, obj, 'down');
@@ -108,10 +107,14 @@ classdef Eight < handle
          
          function x = isGoalState(obj)
              goalState = [1 2 3; 4 5 6; 7 8 0];
-             if goalState == obj.layout
-                 x = true;
-             else
-                 x = false;
+             x = true;
+             for row = 1:3
+                 for col = 1:3
+                    if obj.layout(row,col) ~= goalState(row,col)
+                        x = false;
+                        break;
+                    end
+                 end
              end
          end
          

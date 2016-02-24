@@ -1,0 +1,36 @@
+function goalstate = BFS( start_state )
+    import CQueue
+    goalstate = [];
+    listOfExploredStates = [];
+    queue = CQueue();
+    queue.push(start_state);
+    listOfExploredStates = [listOfExploredStates, start_state];
+    while queue.isempty() == 0
+        state = queue.pop();
+        if state.canmovedown()
+            if state.movedown().isGoalState()
+                goalstate = state;
+                break;
+            end
+            queue.push(state.movedown())
+        end
+        
+        if state.canmoveup()
+            if state.moveup().isGoalState()
+                goalstate = state;
+                break;
+            end
+            queue.push(state.moveup())
+        end
+        
+        if state.canmoveleft()
+            if state.moveleft().isGoalState()
+                goalstate = state;
+                break;
+            end
+            queue.push(state.moveleft())
+        end
+        
+    end
+end
+
