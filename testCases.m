@@ -8,7 +8,7 @@ obj = Eight(goalState);
 exploredLayouts = [];
 %%generate pathcost = 10 layouts
 finalObjects = [];
-[exploredLayouts, finalObjects] = createTests(obj, exploredLayouts, 10, finalObjects)
+[exploredLayouts, finalObjects] = createTests(obj, exploredLayouts, 10, finalObjects);
 finalObjects = finalObjects(randperm(length(finalObjects)));
 finalTenObjects = finalObjects(1:10);
 
