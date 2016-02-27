@@ -1,3 +1,5 @@
+
+
 function isMember = hasBeenExplored(object, array)
 %HASBEENEXPLORED This function determines if an object has been explored
 %before or not by checking each 3x3 matrix in the given array

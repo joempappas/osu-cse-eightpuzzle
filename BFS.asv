@@ -15,7 +15,7 @@ function goalstate = BFS( start_state )
                 goalstate = newstate;
                 break;
             end
-            %if hasBeenExplored(newstate, listOfExploredStates) == 0
+            %if hasBeenExplored(newstate, listOfExploredStates) == 1
                 queue.push(newstate)
             %end
         end
