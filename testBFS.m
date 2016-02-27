@@ -1,8 +1,11 @@
 clc
 clear
 format compact
-layout = [0 2 3; 1 5 6; 4 7 8];
+layout = [1 2 3; 4 5 6; 7 0 8];
 state = Eight(layout);
-goalstate = BFS(state);
+hasFoundGoal = 0;
+exploredStates = [];
+goalstate = DLS(state, hasFoundGoal, exploredStates);
 
 disp(goalstate.layout)
+disp(goalstate.pathcost)
