@@ -1,4 +1,4 @@
-function [goalstate, hasFoundGoal] = DLS(start_state, hasFoundGoal, exploredStates )
+function [goalstate, hasFoundGoal, exploredStates] = DLS(start_state, hasFoundGoal, exploredStates )
 %DLS returns the goal state along with a boolean that states whether or
 %the goal has been found. This second return value is used in order to
 %break out of the recursion loop. 
@@ -27,7 +27,7 @@ function [goalstate, hasFoundGoal] = DLS(start_state, hasFoundGoal, exploredStat
                 disp('Here') %used for debugging
                 return
             elseif nextstate.pathcost < 31 && hasFoundGoal == 0
-                DLS(nextstate, hasFoundGoal, exploredStates);
+                [goalstate, hasFoundGoal, exploredStates] = DLS(nextstate, hasFoundGoal, exploredStates);
             end
         end
     end
@@ -43,7 +43,7 @@ function [goalstate, hasFoundGoal] = DLS(start_state, hasFoundGoal, exploredStat
                 disp('Here')
                 return
             elseif nextstate.pathcost < 31 && hasFoundGoal == 0
-                DLS(nextstate, hasFoundGoal, exploredStates);
+                [goalstate, hasFoundGoal, exploredStates] = DLS(nextstate, hasFoundGoal, exploredStates);
             end
         end
     end
@@ -59,7 +59,7 @@ function [goalstate, hasFoundGoal] = DLS(start_state, hasFoundGoal, exploredStat
                 disp('Here')
                 return
             elseif nextstate.pathcost < 31 && hasFoundGoal == 0
-                DLS(nextstate, hasFoundGoal, exploredStates);
+                [goalstate, hasFoundGoal, exploredStates] = DLS(nextstate, hasFoundGoal, exploredStates);
             end
         end
     end
@@ -75,7 +75,7 @@ function [goalstate, hasFoundGoal] = DLS(start_state, hasFoundGoal, exploredStat
                 disp('Here')
                 return
             elseif nextstate.pathcost < 31 && hasFoundGoal == 0
-                DLS(nextstate, hasFoundGoal, exploredStates);
+                [goalstate, hasFoundGoal, exploredStates] = DLS(nextstate, hasFoundGoal, exploredStates);
             end
         end
     end
