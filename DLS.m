@@ -1,8 +1,8 @@
-function [goalstate, hasFoundGoal] = DLS( start_state, hasFoundGoal, exploredStates )
+function [goalstate, hasFoundGoal] = DLS(start_state, hasFoundGoal, exploredStates )
 %DLS returns the goal state along with a boolean that states whether or
 %the goal has been found. This second return value is used in order to
 %break out of the recursion loop. 
-    import hasBeenExplored;
+    %%import hasBeenExplored;
     goalstate = [];
     if start_state.isGoalState()
         goalstate = start_state;
@@ -18,9 +18,9 @@ function [goalstate, hasFoundGoal] = DLS( start_state, hasFoundGoal, exploredSta
     %on the next state.
     if start_state.canmovedown()
         nextstate = start_state.movedown();
-        stateHasBeenExplored = hasBeenExplored(nextstate, exploredStates);
-        if ~stateHasBeenExplored
-            exploredStates = [exploredStates, nextState.layout];
+        stateUnexplored = hasBeenExplored(nextstate, exploredStates);
+        if stateUnexplored
+            exploredStates = [exploredStates, nextstate.layout];
             if nextstate.isGoalState()
                 goalstate = nextstate; 
                 hasFoundGoal = 1;
@@ -34,9 +34,9 @@ function [goalstate, hasFoundGoal] = DLS( start_state, hasFoundGoal, exploredSta
 
     if start_state.canmoveup()
         nextstate = start_state.moveup();
-        stateHasBeenExplored = hasBeenExplored(nextstate, exploredStates);
-        if ~stateHasBeenExplored
-            exploredStates = [exploredStates, nextState.layout];
+        stateUnexplored = hasBeenExplored(nextstate, exploredStates);
+        if stateUnexplored
+            exploredStates = [exploredStates, nextstate.layout];
             if nextstate.isGoalState()
                 goalstate = nextstate; 
                 hasFoundGoal = 1;
@@ -50,9 +50,9 @@ function [goalstate, hasFoundGoal] = DLS( start_state, hasFoundGoal, exploredSta
 
     if start_state.canmoveright()
         nextstate = start_state.moveright();
-        stateHasBeenExplored = hasBeenExplored(nextstate, exploredStates);
-        if ~stateHasBeenExplored
-            exploredStates = [exploredStates, nextState.layout];
+        stateUnexplored = hasBeenExplored(nextstate, exploredStates);
+        if stateUnexplored
+            exploredStates = [exploredStates, nextstate.layout];
             if nextstate.isGoalState()
                 goalstate = nextstate; 
                 hasFoundGoal = 1;
@@ -66,9 +66,9 @@ function [goalstate, hasFoundGoal] = DLS( start_state, hasFoundGoal, exploredSta
 
     if start_state.canmoveleft()
         nextstate = start_state.moveleft();
-        stateHasBeenExplored = hasBeenExplored(nextstate, exploredStates);
-        if ~stateHasBeenExplored
-            exploredStates = [exploredStates, nextState.layout];
+        stateUnexplored = hasBeenExplored(nextstate, exploredStates);
+        if stateUnexplored
+            exploredStates = [exploredStates, nextstate.layout];
             if nextstate.isGoalState()
                 goalstate = nextstate; 
                 hasFoundGoal = 1;
