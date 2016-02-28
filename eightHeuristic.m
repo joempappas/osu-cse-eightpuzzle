@@ -17,9 +17,9 @@ classdef eightHeuristic < handle
 
         function obj = eightHeuristic(layout)
             obj.layout = layout;
-            obj.pathcost = pathCost;
-            obj.parent = parent;
-            obj.lastMove = lastMove;
+            obj.pathcost = 0;
+            obj.parent;
+            obj.lastMove;
             obj.heuristic;
             obj.pathToGoal;
             
