@@ -1,9 +1,9 @@
 clc
 clear
 format compact
-layout1 = [0 2 3; 4 1 6; 7 8 5];
+layout1 = [2 0 3; 1 5 6; 4 7 8];
 state1 = Eight(layout1);
-layout2 = [3 6 5; 2 1 0; 4 7 8];
+layout2 = [0 2 3; 1 5 6; 4 7 8];
 state2 = Eight(layout2);
 exploredStates = [];
 goalstate = [];
@@ -17,6 +17,7 @@ for i = 0:30
     end
 end
 time = toc;
+traceGoaltoInit(state1, goalstate);
 timeArray = [timeArray, time];
 iterationArray = [iterationArray, numOfIterations];
 save('testSaveFile');
@@ -28,10 +29,12 @@ for i = 0:30
     end
 end
 time = toc;
+traceGoaltoInit(state2, goalstate);
 timeArray = [timeArray, time];
 iterationArray = [iterationArray, numOfIterations];
 save('testSaveFile');
 
+disp('')
 disp(goalstate.layout)
 disp(goalstate.pathcost)
 

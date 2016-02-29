@@ -1,0 +1,19 @@
+function [ ] = traceGoaltoInit( initalstate, goalstate )
+%traceGoaltoInit 
+
+listOfMoves = [];
+lastMove = goalstate.lastMove;
+state = goalstate.parent;
+listOfMoves = [lastMove, listOfMoves];
+i = 0;
+while i < goalstate.pathcost
+    lastMove = state.lastMove;
+    listOfMoves = [lastMove, listOfMoves];
+    state = state.parent;
+    i = i + 1;
+end
+
+disp(initialstate)
+for j = 1:length(listOfMoves)
+    str = 
+end
