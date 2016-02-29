@@ -9,7 +9,7 @@ classdef eightHeuristic < handle
         heuristic
     end
     properties (SetAccess = private)
-        parent = Eight.empty;
+        parent = eightHeuristic.empty;
         lastMove
     end
     
@@ -25,6 +25,14 @@ classdef eightHeuristic < handle
             
         end
         
+        function copy = copyState(object)
+            copy = eightHeuristic(object.layout);
+            copy.pathcost = object.pathcost;
+            copy.parent = object.parent;
+            copy.lastMove = object.lastMove;
+            copy.heuristic = object.heuristic;
+            copy.pathToGoal = object.pathToGoal;
+        end
         
         function calculateHeuristic(obj)
             i = 1;
@@ -87,7 +95,7 @@ classdef eightHeuristic < handle
              if canmoveleft(obj)
                 [row, col] = find(obj.layout == 0);
                 numToSwitch = obj.layout(row,col-1);
-                obj2 = Eight(obj.layout);
+                obj2 = eightHeuristic(obj.layout);
                 obj2.layout(row,col) = numToSwitch;
                 obj2.layout(row, col-1) = 0;
                 visitnode(obj2, obj, 'left');
@@ -98,7 +106,7 @@ classdef eightHeuristic < handle
              if canmoveright(obj)
                 [row, col] = find(obj.layout == 0);
                 numToSwitch = obj.layout(row,col+1);
-                obj2 = Eight(obj.layout);
+                obj2 = eightHeuristic(obj.layout);
                 obj2.layout(row,col) = numToSwitch;
                 obj2.layout(row, col+1) = 0;
                 visitnode(obj2, obj, 'right');
@@ -108,7 +116,7 @@ classdef eightHeuristic < handle
              if canmoveup(obj)
                 [row, col] = find(obj.layout == 0);
                 numToSwitch = obj.layout(row-1,col);
-                obj2 = Eight(obj.layout);
+                obj2 = eightHeuristic(obj.layout);
                 obj2.layout(row,col) = numToSwitch;
                 obj2.layout(row-1, col) = 0;
                 visitnode(obj2, obj, 'up');
@@ -119,7 +127,7 @@ classdef eightHeuristic < handle
              if canmovedown(obj)
                 [row, col] = find(obj.layout == 0);
                 numToSwitch = obj.layout(row+1,col);
-                obj2 = Eight(obj.layout);
+                obj2 = eightHeuristic(obj.layout);
                 obj2.layout(row,col) = numToSwitch;
                 obj2.layout(row+1, col) = 0;
                 visitnode(obj2, obj, 'down');
@@ -128,15 +136,8 @@ classdef eightHeuristic < handle
          
          function x = isGoalState(obj)
              goalState = [1 2 3; 4 5 6; 7 8 0];
-             x = true;
-             for row = 1:3
-                 for col = 1:3
-                    if obj.layout(row,col) ~= goalState(row,col)
-                        x = false;
-                        break;
-                    end
-                 end
-             end
+             x = isequal(obj.layout, goalState);
+
          end
          
     end
