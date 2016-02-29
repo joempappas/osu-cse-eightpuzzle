@@ -10,23 +10,25 @@ goalstate = [];
 iterationArray = [];
 timeArray = [];
 tic
-for i = 0:30
-    [goalstate, foundGoal, numOfIterations] = IDS(state1, i);
-    if foundGoal
-        break;
-    end
-end
+%for i = 0:30
+%    [goalstate, foundGoal, numOfIterations] = IDS(state1, i);
+%    if foundGoal
+%        break;
+%    end
+%end
+[goalstate, numOfIterations] = BFS(state1);
 time = toc;
 timeArray = [timeArray, time];
 iterationArray = [iterationArray, numOfIterations];
 save('testSaveFile');
 tic
-for i = 0:30
-    [goalstate, foundGoal, numOfIterations] = IDS(state2, i);
-    if foundGoal
-        break;
-    end
-end
+%for i = 0:30
+%    [goalstate, foundGoal, numOfIterations] = IDS(state2, i);
+%    if foundGoal
+%        break;
+%    end
+%end
+[goalstate, numOfIterations] = BFS(state2);
 time = toc;
 timeArray = [timeArray, time];
 iterationArray = [iterationArray, numOfIterations];
