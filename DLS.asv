@@ -1,8 +1,8 @@
-function [goalstate, hasFoundGoal] = DLS( start_state, hasFoundGoal, exploredStates )
+function [goalstate, hasFoundGoal, exploredStates] = DLS(start_state, hasFoundGoal, exploredStates )
 %DLS returns the goal state along with a boolean that states whether or
 %the goal has been found. This second return value is used in order to
 %break out of the recursion loop. 
-    import hasBeenExplored;
+    %%import hasBeenExplored;
     goalstate = [];
     if start_state.isGoalState()
         goalstate = start_state;
@@ -23,13 +23,16 @@ function [goalstate, hasFoundGoal] = DLS( start_state, hasFoundGoal, exploredSta
         stateHasBeenExplored = hasBeenExplored(nextstate, exploredStates);
         %if ~stateHasBeenExplored
          %   exploredStates = [exploredStates, nextState.layout];
+        stateUnexplored = hasBeenExplored(nextstate, exploredStates);
+        if stateUnexplored
+            exploredStates = [exploredStates, nextstate.layout];
             if nextstate.isGoalState()
                 goalstate = nextstate; 
                 hasFoundGoal = 1;
                 disp('Here') %used for debugging
-                return
+                return;
             elseif nextstate.pathcost < 31 && hasFoundGoal == 0
-                DLS(nextstate, hasFoundGoal, exploredStates);
+                [goalstate, hasFoundGoal, exploredStates] = DLS(nextstate, hasFoundGoal, exploredStates);
             end
        % end
     end
@@ -39,15 +42,19 @@ function [goalstate, hasFoundGoal] = DLS( start_state, hasFoundGoal, exploredSta
         stateHasBeenExplored = hasBeenExplored(nextstate, exploredStates);
         %if ~stateHasBeenExplored
          %   exploredStates = [exploredStates, nextState.layout];
+
+        stateUnexplored = hasBeenExplored(nextstate, exploredStates);
+        if stateUnexplored
+            exploredStates = [exploredStates, nextstate.layout];
             if nextstate.isGoalState()
                 goalstate = nextstate; 
                 hasFoundGoal = 1;
                 disp('Here')
                 return;
             elseif nextstate.pathcost < 31 && hasFoundGoal == 0
-                DLS(nextstate, hasFoundGoal, exploredStates);
+                [goalstate, hasFoundGoal, exploredStates] = DLS(nextstate, hasFoundGoal, exploredStates);
             end
-        %end
+        end
     end
 
     if start_state.canmoveright()
@@ -55,13 +62,16 @@ function [goalstate, hasFoundGoal] = DLS( start_state, hasFoundGoal, exploredSta
         %stateHasBeenExplored = hasBeenExplored(nextstate, exploredStates);
         %if ~stateHasBeenExplored
         %    exploredStates = [exploredStates, nextState.layout];
+        stateUnexplored = hasBeenExplored(nextstate, exploredStates);
+        if stateUnexplored
+            exploredStates = [exploredStates, nextstate.layout];
             if nextstate.isGoalState()
                 goalstate = nextstate; 
                 hasFoundGoal = 1;
                 disp('Here')
                 return;
             elseif nextstate.pathcost < 31 && hasFoundGoal == 0
-                DLS(nextstate, hasFoundGoal, exploredStates);
+                [goalstate, hasFoundGoal, exploredStates] = DLS(nextstate, hasFoundGoal, exploredStates);
             end
         %end
     end
@@ -71,13 +81,16 @@ function [goalstate, hasFoundGoal] = DLS( start_state, hasFoundGoal, exploredSta
         %stateHasBeenExplored = hasBeenExplored(nextstate, exploredStates);
         %if ~stateHasBeenExplored
         %    exploredStates = [exploredStates, nextState.layout];
+        stateUnexplored = hasBeenExplored(nextstate, exploredStates);
+        if stateUnexplored
+            exploredStates = [exploredStates, nextstate.layout];
             if nextstate.isGoalState()
                 goalstate = nextstate; 
                 hasFoundGoal = 1;
                 disp('Here')
                 return;
             elseif nextstate.pathcost < 31 && hasFoundGoal == 0
-                DLS(nextstate, hasFoundGoal, exploredStates);
+                [goalstate, hasFoundGoal, exploredStates] = DLS(nextstate, hasFoundGoal, exploredStates);
             end
         %end
     end
