@@ -33,7 +33,7 @@ function [goalstate, numOfIterations] = BFS( start_state )
         %state, and if it is not then it adds it to the queueif it has not
         %been explored yet
         
-        if state.canmovedown()
+        if state.canmovedown() && (strcmp(state.lastMove,'up') == 0)
             newstate = state.movedown();
             if newstate.isGoalState()
                 goalstate = newstate;
@@ -46,7 +46,7 @@ function [goalstate, numOfIterations] = BFS( start_state )
             end
         end
         
-        if state.canmoveup()
+        if state.canmoveup() && (strcmp(state.lastMove,'down') == 0)
             newstate = state.moveup();
             if newstate.isGoalState()
                 goalstate = newstate;
@@ -59,7 +59,7 @@ function [goalstate, numOfIterations] = BFS( start_state )
             end
         end
         
-        if state.canmoveleft()
+        if state.canmoveleft() && (strcmp(state.lastMove,'right') == 0)
             newstate = state.moveleft();
             if newstate.isGoalState()
                 goalstate = newstate;
@@ -72,7 +72,7 @@ function [goalstate, numOfIterations] = BFS( start_state )
             end
         end
         
-        if state.canmoveright()
+        if state.canmoveright() && (strcmp(state.lastMove,'left') == 0)
             newstate = state.moveright();
             if newstate.isGoalState()
                 goalstate = newstate;

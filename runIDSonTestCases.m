@@ -16,12 +16,13 @@ for i = 1:length(finalTenObjects)
     
     [goalstate, numOfIterations] = runIDS(state.layout);
     disp(goalstate.pathcost)
-    disp('FOUND GOAL')
     time = toc;
+    disp('FOUND GOAL')
     timeArray = [timeArray, time];
     iterationArray = [iterationArray, numOfIterations];
+    save('IDStimeAndIterations')
 end
-save('IDStimeAndIterations')
+
 for i = 1:length(finalFifteenObjects)
     tic
     disp('running IDS on initial state');
@@ -29,12 +30,13 @@ for i = 1:length(finalFifteenObjects)
     
     [goalstate, numOfIterations] = runIDS(state.layout);
     disp(goalstate.pathcost)
-    disp('FOUND GOAL')
     time = toc;
+    disp('FOUND GOAL')
     timeArray = [timeArray, time];
     iterationArray = [iterationArray, numOfIterations];
+    save('IDStimeAndIterations')
 end
-save('IDStimeAndIterations')
+
 for i = 1:length(finalTwentyObjects)
     tic
     disp('running IDS on initial state');
@@ -42,35 +44,9 @@ for i = 1:length(finalTwentyObjects)
     
     [goalstate, numOfIterations] = runIDS(state.layout);
     disp(goalstate.pathcost)
-    disp('FOUND GOAL')
     time = toc;
+    disp('FOUND GOAL')
     timeArray = [timeArray, time];
     iterationArray = [iterationArray, numOfIterations];
+    save('IDStimeAndIterations')
 end
-save('IDStimeAndIterations')
-for i = 1:length(finalTwentyFiveObjects)
-    tic
-    disp('running IDS on initial state');
-    state = finalTwentyFiveObjects(i);
-    
-    [goalstate, numOfIterations] = runIDS(state.layout);
-    disp(goalstate.pathcost)
-    disp('FOUND GOAL')
-    time = toc;
-    timeArray = [timeArray, time];
-    iterationArray = [iterationArray, numOfIterations];
-end
-save('IDStimeAndIterations')
-for i = 1:length(finalThirtyObjects)
-    tic
-    disp('running IDS on initial state');
-    state = finalThirtyObjects(i);
-    
-    [goalstate, numOfIterations] = runIDS(state.layout);
-    disp(goalstate.pathcost)
-    disp('FOUND GOAL')
-    time = toc;
-    timeArray = [timeArray, time];
-    iterationArray = [iterationArray, numOfIterations];
-end
-save('IDStimeAndIterations')

@@ -25,7 +25,7 @@ finalFifteenObjects = finalObjects(1:10);
 %%generate pathcost = 20 layouts
 finalObjects = [];
 i = 1;
-while i < 10
+while i < 5
     [exploredLayouts, finalObjects] = createTests(finalFifteenObjects(i),  exploredLayouts, 20, finalObjects);
     i = i +1;
 end
