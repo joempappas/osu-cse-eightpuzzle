@@ -1,24 +1,32 @@
 function [goalstate] = aStar(state)
-%ASTAR Summary of this function goes here
-%   Detailed explanation goes here
+%ASTAR This is the implementation of the aStar search
+
+%set goal state to an empty array
     goalstate = [];
-    frontierNodes = [];
     frontierNodes = [state];
     numElements = 1;
     hasFoundGoal = 0;
+    %if at goal state, don't enter loop and return goal state
     if state.isGoalState()
         goalstate = state;
         hasFoundGoal = true;
     end
     
+    %continue loop until goal has been found
     while hasFoundGoal == 0
         i = 1;
         heuristicPos = 1;
+        %If there is only one element lowest heuristic must be that one
+        %element
         if numElements == 1
             lowHeuristic = frontierNodes.heuristic;
+        %if there is more than one element set lowest heuristic to first
+        %child
         else
             lowHeuristic = frontierNodes(1).heuristic;
         end
+        %Check to see if there is a lower heuristic to continue with and
+        %find its position
         while i < numElements
             if frontierNodes(i).heuristic < lowHeuristic
                 lowHeuristc = frontierNodes(i).heuristic;
@@ -26,7 +34,10 @@ function [goalstate] = aStar(state)
             end
             i = i + 1;
         end
+        %copy the state at which the heuristic is lowest and set to state
         state = frontierNodes(heuristicPos).copyState();
+        %remove the state from the frontier nodes and decrement numElements
+        %by one
         if numElements == 1
             frontierNodes = [];
             numElements = numElements -1;
@@ -55,10 +66,14 @@ function [goalstate] = aStar(state)
                 frontierNodes = frontierNodes([1:heuristicPos-1, heuristicPos+1:numElements]);
             end
             numElements = numElements -1;
-        end        
+        end
+        
+        %If state is the goal mark goal found and set to goalstate
         if state.isGoalState()
             goalstate = state;
             hasFoundGoal= true;
+        %if goal state is not found, do all possible moves, add to the
+        %frontier and increment numElements for each added state
         else
             if state.canmovedown()
                 childState = state.movedown();
