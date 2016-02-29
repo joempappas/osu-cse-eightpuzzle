@@ -38,9 +38,9 @@ function goalstate = BFS( start_state )
                 goalstate = newstate;
                 break;
             end
-            if hasBeenExplored(newstate, listOfExploredStates) == 0
+            %if hasBeenExplored(newstate, listOfExploredStates) == 0
                 queue.push(newstate)
-            end
+            %end
         end
         
         if state.canmoveup()
@@ -49,9 +49,9 @@ function goalstate = BFS( start_state )
                 goalstate = newstate;
                 break;
             end
-            if hasBeenExplored(newstate, listOfExploredStates) == 0
+            %if hasBeenExplored(newstate, listOfExploredStates) == 0
                 queue.push(newstate)
-            end
+            %end
         end
         
         if state.canmoveleft()
@@ -60,9 +60,9 @@ function goalstate = BFS( start_state )
                 goalstate = newstate;
                 break;
             end
-            if hasBeenExplored(newstate, listOfExploredStates) == 0
+            %if hasBeenExplored(newstate, listOfExploredStates) == 0
                 queue.push(newstate)
-            end
+            %end
         end
         
         if state.canmoveright()
@@ -72,9 +72,9 @@ function goalstate = BFS( start_state )
                 break;
             end
             
-            if hasBeenExplored(newstate, listOfExploredStates) == 0
+            %if hasBeenExplored(newstate, listOfExploredStates) == 0
                 queue.push(newstate)
-            end
+            %end
         end
     end
 end

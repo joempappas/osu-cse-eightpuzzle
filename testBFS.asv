@@ -1,0 +1,22 @@
+clc
+clear
+format compact
+layout = [2 3 6; 1 5 0; 4 7 8];
+state = Eight(layout);
+exploredStates = [];
+goalstate = [];
+iterationArray = [];
+timeArray = [];
+tic
+for i = 0:30
+    [goalstate, foundGoal, numOfIterations] = IDS(state, i);
+    if foundGoal
+        break;
+    end
+end
+time = toc;
+timeArray = [timeArray, time];
+iterationArray = iterationArray, numOfIterations
+
+disp(goalstate.layout)
+disp(goalstate.pathcost)
