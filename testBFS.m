@@ -1,11 +1,11 @@
 clc
 clear
 format compact
-layout = [1 2 3; 4 5 6; 7 0 8];
-state = Eight(layout);
+layout = [1 0 3; 4 2 5; 7 8 6];
+state = eightHeuristic(layout);
 hasFoundGoal = 0;
 exploredStates = [];
-goalstate = DLS(state, hasFoundGoal, exploredStates);
-
+%%goalstate = DLS(state, hasFoundGoal, exploredStates);
+[goalstate] = aStar(state);
 disp(goalstate.layout)
 disp(goalstate.pathcost)
