@@ -8,6 +8,8 @@ function [goalstate, hasFoundGoal] = DLS( start_state, hasFoundGoal, exploredSta
         goalstate = start_state;
     end
     
+    disp(start_state.pathcost)
+    
     
     %The following if loops check if the current state can make any of the
     %available moves and if it can then it adds the state to the list of
@@ -19,64 +21,64 @@ function [goalstate, hasFoundGoal] = DLS( start_state, hasFoundGoal, exploredSta
     if start_state.canmovedown()
         nextstate = start_state.movedown();
         stateHasBeenExplored = hasBeenExplored(nextstate, exploredStates);
-        if ~stateHasBeenExplored
-            exploredStates = [exploredStates, nextState.layout];
+        %if ~stateHasBeenExplored
+         %   exploredStates = [exploredStates, nextState.layout];
             if nextstate.isGoalState()
                 goalstate = nextstate; 
                 hasFoundGoal = 1;
                 disp('Here') %used for debugging
-                return
+                return;
             elseif nextstate.pathcost < 31 && hasFoundGoal == 0
                 DLS(nextstate, hasFoundGoal, exploredStates);
             end
-        end
+       % end
     end
 
     if start_state.canmoveup()
         nextstate = start_state.moveup();
         stateHasBeenExplored = hasBeenExplored(nextstate, exploredStates);
-        if ~stateHasBeenExplored
-            exploredStates = [exploredStates, nextState.layout];
+        %if ~stateHasBeenExplored
+         %   exploredStates = [exploredStates, nextState.layout];
             if nextstate.isGoalState()
                 goalstate = nextstate; 
                 hasFoundGoal = 1;
                 disp('Here')
-                return
+                return;
             elseif nextstate.pathcost < 31 && hasFoundGoal == 0
                 DLS(nextstate, hasFoundGoal, exploredStates);
             end
-        end
+        %end
     end
 
     if start_state.canmoveright()
         nextstate = start_state.moveright();
-        stateHasBeenExplored = hasBeenExplored(nextstate, exploredStates);
-        if ~stateHasBeenExplored
-            exploredStates = [exploredStates, nextState.layout];
+        %stateHasBeenExplored = hasBeenExplored(nextstate, exploredStates);
+        %if ~stateHasBeenExplored
+        %    exploredStates = [exploredStates, nextState.layout];
             if nextstate.isGoalState()
                 goalstate = nextstate; 
                 hasFoundGoal = 1;
                 disp('Here')
-                return
+                return;
             elseif nextstate.pathcost < 31 && hasFoundGoal == 0
                 DLS(nextstate, hasFoundGoal, exploredStates);
             end
-        end
+        %end
     end
 
     if start_state.canmoveleft()
         nextstate = start_state.moveleft();
-        stateHasBeenExplored = hasBeenExplored(nextstate, exploredStates);
-        if ~stateHasBeenExplored
-            exploredStates = [exploredStates, nextState.layout];
+        %stateHasBeenExplored = hasBeenExplored(nextstate, exploredStates);
+        %if ~stateHasBeenExplored
+        %    exploredStates = [exploredStates, nextState.layout];
             if nextstate.isGoalState()
                 goalstate = nextstate; 
                 hasFoundGoal = 1;
                 disp('Here')
-                return
+                return;
             elseif nextstate.pathcost < 31 && hasFoundGoal == 0
                 DLS(nextstate, hasFoundGoal, exploredStates);
             end
-        end
+        %end
     end
 end
