@@ -19,6 +19,12 @@ classdef Eight < handle
             obj.parent;
             obj.lastMove;
         end
+        function copy = copyState(object)
+            copy = eightHeuristic(object.layout);
+            copy.pathcost = object.pathcost;
+            copy.parent = object.parent;
+            copy.lastMove = object.lastMove;
+        end
         
         function visitnode(newNode, parent, move)
             newNode.parent = parent;
@@ -107,15 +113,7 @@ classdef Eight < handle
          
          function x = isGoalState(obj)
              goalState = [1 2 3; 4 5 6; 7 8 0];
-             x = true;
-             for row = 1:3
-                 for col = 1:3
-                    if obj.layout(row,col) ~= goalState(row,col)
-                        x = false;
-                        break;
-                    end
-                 end
-             end
+             x = isequal(obj,goalState);
          end
          
     end

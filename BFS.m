@@ -7,7 +7,7 @@ function [goalstate, numOfIterations] = BFS( start_state )
     import hasBeenExplored;
     goalstate = [];
     if start_state.isGoalState()
-        goalstate = start_state;
+        goalstate = start_state.copyState();
     end
     exploredStates = [];
     queue = CQueue();
@@ -23,7 +23,6 @@ function [goalstate, numOfIterations] = BFS( start_state )
         %added to the listOfExploredStates
         state = queue.pop();
         exploredStates = [exploredStates, state.layout];
-        disp(state.pathcost);
         
         %disp(listOfExploredStates(1).layout)
         
@@ -36,7 +35,7 @@ function [goalstate, numOfIterations] = BFS( start_state )
         if state.canmovedown() && (strcmp(state.lastMove,'up') == 0)
             newstate = state.movedown();
             if newstate.isGoalState()
-                goalstate = newstate;
+                goalstate = newstate.copyState();
                 break;
             end
             stateUnexplored = hasBeenExplored(newstate, exploredStates);
@@ -49,7 +48,7 @@ function [goalstate, numOfIterations] = BFS( start_state )
         if state.canmoveup() && (strcmp(state.lastMove,'down') == 0)
             newstate = state.moveup();
             if newstate.isGoalState()
-                goalstate = newstate;
+                goalstate = newstate.copyState();
                 break;
             end
             stateUnexplored = hasBeenExplored(newstate, exploredStates);
@@ -62,7 +61,7 @@ function [goalstate, numOfIterations] = BFS( start_state )
         if state.canmoveleft() && (strcmp(state.lastMove,'right') == 0)
             newstate = state.moveleft();
             if newstate.isGoalState()
-                goalstate = newstate;
+                goalstate = newstate.copyState();
                 break;
             end
             stateUnexplored = hasBeenExplored(newstate, exploredStates);
@@ -75,7 +74,7 @@ function [goalstate, numOfIterations] = BFS( start_state )
         if state.canmoveright() && (strcmp(state.lastMove,'left') == 0)
             newstate = state.moveright();
             if newstate.isGoalState()
-                goalstate = newstate;
+                goalstate = newstate.copyState();
                 break;
             end
             stateUnexplored = hasBeenExplored(newstate, exploredStates);
