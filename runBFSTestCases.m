@@ -12,7 +12,7 @@ timeArray = [];
 for i = 1:length(finalTenObjects)
     tic
     disp('running BFS on initial state');
-    state = Eight(finalTenObjects(i));
+    state = finalTenObjects(i);
     
     [goalstate, numOfIterations] = BFS(state);
     disp(goalstate.pathcost)
@@ -26,7 +26,7 @@ end
 for i = 1:length(finalFifteenObjects)
     tic
     disp('running BFS on initial state');
-    state = Eight(finalFifteenObjects(i));
+    state = finalTenObjects(i);
     
     [goalstate, numOfIterations] = BFS(state);
     disp(goalstate.pathcost)
@@ -40,7 +40,8 @@ end
 for i = 1:length(finalTwentyObjects)
     tic
     disp('running BFS on initial state');
-    state = Eight(finalTwentyObjects(i));  
+    state = finalTenObjects(i);
+    
     [goalstate, numOfIterations] = BFS(state);
     disp(goalstate.pathcost);
     time = toc;

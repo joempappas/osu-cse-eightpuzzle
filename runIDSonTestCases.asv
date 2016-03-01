@@ -5,7 +5,7 @@ format compact
 disp('running testCases');
 testCases
 disp('done running testCases');
-%%
+
 iterationArray = [];
 timeArray = [];
 for i = 1:length(finalTenObjects)

@@ -1,4 +1,4 @@
-function [goalstate, foundGoal, numOfIterations] = IDS( start_state, depth )
+function [goalstate, foundGoal, numOfIterations] = IDS( start_state, depth, numOfIterations )
 %IDS searches the 8 puzzle for a solution. The goal state is returned with
 %updated properties that give the pathcost to get there, parent state, and
 %the last move that got there.
@@ -14,7 +14,6 @@ function [goalstate, foundGoal, numOfIterations] = IDS( start_state, depth )
     stack.push(start_state);
     exploredStates = [exploredStates, start_state.layout];
     foundGoal = 0;
-    numOfIterations = 0;
     
     %IDS will run until the stack is empty (i.e. all states within the given depth
     %have been explored) or until a goal state is found. 
@@ -29,7 +28,7 @@ function [goalstate, foundGoal, numOfIterations] = IDS( start_state, depth )
         %state, and if it is not then it adds it to the queueif it has not
         %been explored yet
         
-        if state.canmovedown() && strcmp(state.lastMove,'up') == 0
+        if state.canmovedown() && ~strcmp(state.lastMove,'up')
             newstate = state.movedown();
             if newstate.isGoalState()
                 goalstate = newstate;
@@ -47,7 +46,7 @@ function [goalstate, foundGoal, numOfIterations] = IDS( start_state, depth )
             end
         end
         
-        if state.canmoveup() && strcmp(state.lastMove,'down') == 0
+        if state.canmoveup() && ~strcmp(state.lastMove,'down')
             newstate = state.moveup();
             if newstate.isGoalState()
                 goalstate = newstate;
@@ -65,7 +64,7 @@ function [goalstate, foundGoal, numOfIterations] = IDS( start_state, depth )
             end
         end
         
-        if state.canmoveleft() && strcmp(state.lastMove,'right') == 0
+        if state.canmoveleft() && ~strcmp(state.lastMove,'right')
             newstate = state.moveleft();
             if newstate.isGoalState()
                 goalstate = newstate;
@@ -83,7 +82,7 @@ function [goalstate, foundGoal, numOfIterations] = IDS( start_state, depth )
             end
         end
         
-        if state.canmoveright() && strcmp(state.lastMove,'left') == 0
+        if state.canmoveright() && ~strcmp(state.lastMove,'left')
             newstate = state.moveright();
             if newstate.isGoalState()
                 goalstate = newstate;
