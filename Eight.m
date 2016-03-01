@@ -5,8 +5,6 @@ classdef Eight < handle
     properties
         layout
         pathcost
-    end
-    properties (SetAccess = private)
         parent = Eight.empty;
         lastMove
     end
@@ -113,7 +111,7 @@ classdef Eight < handle
          
          function x = isGoalState(obj)
              goalState = [1 2 3; 4 5 6; 7 8 0];
-             x = isequal(obj,goalState);
+             x = isequal(obj.layout,goalState);
          end
          
     end

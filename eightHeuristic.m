@@ -7,8 +7,6 @@ classdef eightHeuristic < handle
         pathcost
         pathToGoal
         heuristic
-    end
-    properties (SetAccess = private)
         parent = eightHeuristic.empty;
         lastMove
     end

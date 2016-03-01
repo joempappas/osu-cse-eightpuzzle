@@ -23,7 +23,7 @@ function [goalstate, numOfIterations] = BFS( start_state )
         %added to the listOfExploredStates
         state = queue.pop();
         exploredStates = [exploredStates, state.layout];
-        
+        disp(state.pathcost)
         %disp(listOfExploredStates(1).layout)
         
         
