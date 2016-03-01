@@ -137,7 +137,6 @@ classdef eightHeuristic < handle
          function x = isGoalState(obj)
              goalState = [1 2 3; 4 5 6; 7 8 0];
              x = isequal(obj.layout, goalState);
-
          end
          
     end
