@@ -1,5 +1,7 @@
 function [ ] = traceGoaltoInit( initialstate, goalstate )
-%traceGoaltoInit 
+%traceGoaltoInit Saves the list of moves taken to get to the goal state and
+%if run, will let the user step through the moves taken, showing the resulting
+%state after each step. 
 
 listOfMoves = {};
 lastMove = goalstate.lastMove;

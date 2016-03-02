@@ -1,3 +1,10 @@
+%Script used to run IDS on generated test cases. testCases generates random
+%test cases (20 puzzles with the goal 10 steps away, 20 15's, and 5 20's.
+
+%This script calls the runIDS function which is given a layout to run with
+%and returns the goalstate and the number of iterations to find the goal
+%state.
+
 clc
 clear
 format compact
